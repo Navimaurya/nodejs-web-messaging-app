@@ -1,0 +1,25 @@
+{
+  "name": "Chat Box Messaging",
+  "short_name": "ChatX",
+  "description": "This is a freeware opensource messaging Web App developed by Navneet Chandra Maurya",
+  "gcm_sender_id": "402845223712",
+  "gcm_user_visible_only": true,
+  "offline_enabled": true,
+  "start_url": "/?chatx=1",
+  "display": "minimal-ui",
+  "scope": "/",
+  "background_color": "#000000",
+  "theme_color": "#0f4a73",
+  "icons": [
+    {
+      "src": "/notifications/favicon_144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/notifications/favicon_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
