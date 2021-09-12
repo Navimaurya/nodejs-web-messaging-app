@@ -1,4 +1,4 @@
-import  "@babel/polyfill";
+import "@babel/polyfill";
 import axios from "axios";
 
 import SynceFromServer from './messageapp/SynceFromServer'
@@ -8,10 +8,12 @@ import Auth from './user/auth';
 import toBoolean from "validator/es/lib/toBoolean";
 
 // import AppControll from './messageapp/appControll'
-const loginpage = async () =>{
+const loginpage = async () => {
 
 
     await Auth.login();
+    await Auth.resister();
+    Auth.resisterpage();
 }
 // const startApp = async ()=>{
 //     try {
@@ -29,27 +31,27 @@ const loginpage = async () =>{
 // }
 
 //Loading index page
-const index = async () =>{
-    try{
+const index = async () => {
+    try {
         const res = await axios({
             method: 'GET',
             url: '/web'
         });
-        if (res.status === 200){
+        if (res.status === 200) {
             let main = document.getElementById('main');
-            if (!main){
+            if (!main) {
                 main = document.createElement("div");
                 main.id = 'main';
                 document.body.insertBefore(main, document.body.firstChild)
             }
             main.innerHTML = res.data;
-            if (toBoolean(res.headers.auth)){
+            if (toBoolean(res.headers.auth)) {
                 await StartUI.startApp();
             }
             await loginpage();
             return true;
         }
-    }catch (err){
+    } catch (err) {
         console.log(err.response.data, "From index")
         return false;
     }
@@ -57,7 +59,7 @@ const index = async () =>{
 
 //Main funtion for the Page
 const main = async () => {
-    if (await index()){
+    if (await index()) {
         console.log('start')
     }
 }
@@ -67,5 +69,6 @@ document.onreadystatechange = async () => {
     if (document.readyState === 'interactive') {
         window.user = null;
         await main();
+        toast('This app is a Node Js personal project', 'bg-success')
     }
 }

@@ -5,8 +5,8 @@ const User = require("./../models/users");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 
-const signToken =  (id) => {
-    return  jwt.sign({ id }, process.env.JWT_SECRET, {
+const signToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIREIN,
     });
 };
@@ -32,7 +32,7 @@ exports.createSendToken = (user, statusCode, req, res) => {
 
 // Module area Registration
 exports.signup = catchAsync(async (req, res, next) => {
-    if (!req.body.phone ) {
+    if (!req.body.phone) {
         return next(
             new AppError(
                 "Please provide a valid phone number.",
@@ -40,11 +40,12 @@ exports.signup = catchAsync(async (req, res, next) => {
             )
         );
     }
-    if (!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/.test(req.body.password))){
+    if (!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/.test(req.body.password))) {
         return next(new AppError("Please make a strong password.", 400));
     }
     const newUser = await User.create({
-        code : req.body.code,
+        code: 91,
+        name: req.body.name,
         phone: req.body.phone,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm,
@@ -71,7 +72,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protect = catchAsync(async (req, res, next) => {
     let token;
-    if (req.headers.authorization &&req.headers.authorization.startsWith("Bearer")) {
+    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         token = req.headers.authorization.split(" ")[1];
     } else if (req.cookies.jwt) {
         token = req.cookies.jwt;
@@ -96,11 +97,11 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.isReceiverUse = catchAsync(async (req, res, next) => {
-    const {receiver, phone} = req.body
+    const { receiver, phone } = req.body
     let data = null;
-    if (phone !== undefined){
+    if (phone !== undefined) {
         if (typeof phone !== 'number' || phone.toString().length < 10) return next(new AppError("Provede a valid number.", 400));
-        data = await User.findOne({phone : phone});
+        data = await User.findOne({ phone: phone });
     } else {
         data = await User.findById(receiver);
     }
@@ -184,7 +185,7 @@ exports.isloggedIn = async (req, res, next) => {
         }
         // Grant access to new route
         req.user = currentUser;
-        res.locals.data = req.user ;
+        res.locals.data = req.user;
         next()
     } catch (error) {
         next();

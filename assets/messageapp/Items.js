@@ -1,20 +1,20 @@
-class Items{
-    gatTime = (date) =>{
-        try{
+class Items {
+    gatTime = (date) => {
+        try {
             date = new Date(date);
             const tDate = new Date()
             if (date.getFullYear() != tDate.getFullYear()) return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate();
             if (date.getMonth() != tDate.getMonth()) return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate();
-            if(date.getDate() != tDate.getDate() && date.getDate() == tDate.getDate()-1) return "Yesterday";
+            if (date.getDate() != tDate.getDate() && date.getDate() == tDate.getDate() - 1) return "Yesterday";
             if (date.getDate() == tDate.getDate()) return date.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate();
         } catch (err) {
             let x = new Date()
-            return  x.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+            return x.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
         }
     }
     // ${this.gatTime(data.delivered)}">${data.time}
-    addFriendList = (data, type = null)=> {
+    addFriendList = (data, type = null) => {
         const friendBody = $('.sidebar-body #friendListContainer');
         if (!friendBody) return false;
         type = type ? 'avatar-state-success' : null;
@@ -47,7 +47,7 @@ class Items{
                             </div>
                         </li>`);
     }
-    addChatlist = (data, type = null)=> {
+    addChatlist = (data, type = null) => {
         if (typeof data !== "object") return false;
         const chatBody = $('.sidebar-body #chatListContainer');
         if (!chatBody) return false;
@@ -88,14 +88,14 @@ class Items{
                             </div>
                         </li>`);
     }
-    addToChat = (data, type = null)=> {
+    addToChat = (data, type = null) => {
         if (typeof data !== "object") return false;
         const chatBody = $('.sidebar-body #chatListContainer');
         if (!chatBody) return false;
         const add = () => {
             data.time = this.gatTime(new Date());
             if (data.friend.name == undefined) data.friend.name = data.friend.phone;
-            if (data.unseen){
+            if (data.unseen) {
                 chatBody.prepend(`<li class="list-group-item chatListItem-class" data-friend-id="${data.friend._id}">
                                 <div>
                                     <figure class="avatar">
@@ -113,7 +113,7 @@ class Items{
                                 </div>
                             </div>
                         </li>`);
-            }else {
+            } else {
                 chatBody.prepend(`<li class="list-group-item chatListItem-class open-chat" data-friend-id="${data.friend._id}">
                             <div>
                                 <figure class="avatar">
@@ -147,16 +147,19 @@ class Items{
             }
             return true;
         }
-        for (let i=0; i < chatBody.children().length; i++){
+        for (let i = 0; i < chatBody.children().length; i++) {
             const child = chatBody.children()[i];
-            if(child.dataset.frienId == data.friend._id){
+            if (child.dataset.frienId == data.friend._id) {
                 child.remove();
                 return add();
             }
         }
         return add();
     }
-    openChat = (data)=> {
+    // <small class="text-success">
+    //     <i>writing...</i>
+    // </small>
+    openChat = (data) => {
         if (typeof data !== "object") return false;
         const chatBody = $('.content #chatBoxContainer');
         if (!chatBody) return false;
@@ -171,43 +174,44 @@ class Items{
                     </figure>
                     <div>
                         <h5>${data.friend.name}</h5>
-                        <small class="text-success">
-                            <i>writing...</i>
-                        </small>
+                        
                     </div>
                 </div>
                 <div class="chat-header-action">
                     <ul class="list-inline">
-                        <li class="list-inline-item d-xl-none d-inline">
-                            <a href="#" class="btn btn-outline-light mobile-navigation-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                            </a>
-                        </li>
-                        <li class="list-inline-item" data-toggle="tooltip" title="" data-original-title="Voice call">
-                            <a href="#" class="btn btn-outline-light text-success" data-toggle="modal" data-target="#call">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                            </a>
-                        </li>
-                        <li class="list-inline-item" data-toggle="tooltip" title="" data-original-title="Video call">
-                            <a href="#" class="btn btn-outline-light text-warning" data-toggle="modal" data-target="#videoCall">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                            </a>
-                        </li>
+                       
+                       
                         <li class="list-inline-item">
                             <a href="#" class="btn btn-outline-light" data-toggle="dropdown">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Add to archive</a>
-                                <a href="#" class="dropdown-item">Delete</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item text-danger">Block</a>
+                               
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>`)
+        //  <li class="list-inline-item" data-toggle="tooltip" title="" data-original-title="Video call">
+        //                 <a href="#" class="btn btn-outline-light text-warning" data-toggle="modal" data-target="#videoCall">
+        //                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+        //                 </a>
+        //             </li>
+        // < li class="list-inline-item d-xl-none d-inline" >
+        //     <a href="#" class="btn btn-outline-light mobile-navigation-button">
+        //         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        //     </a>
+        //             </li >
+        // <li class="list-inline-item" data-toggle="tooltip" title="" data-original-title="Voice call">
+        //     <a href="#" class="btn btn-outline-light text-success" data-toggle="modal" data-target="#call">
+        //         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        //     </a>
+        // </li>
+        //  <a href="#" class="dropdown-item">Add to archive</a>
+        //                     <a href="#" class="dropdown-item">Delete</a>
+        //                     <div class="dropdown-divider"></div>
+        //                     <a href="#" class="dropdown-item text-danger">Block</a>
         //Body
         chatBody.append(`<div class="chat-body" style="position: relative">
                   <div class="dropHover" style="">
@@ -240,44 +244,45 @@ class Items{
                 </form>
             </div>`)
     }
-    addMessage = (data, type=null, b=null)=>{
-                const chat_body = $('.layout .content .chat .chat-body');
-                if (chat_body.length > 0) {
-                    $('.layout .content .chat .chat-body .messages').append(`<div class="message-item ` + type + `">
+    // <div>
+    //                             <div class="time">14:50 PM  ${type == 'outgoing-message' ? '<i class="ti-check"></i>' : ''}  </div>
+    //                         </div>
+    addMessage = (data, type = null, b = null) => {
+        const chat_body = $('.layout .content .chat .chat-body');
+        if (chat_body.length > 0) {
+            $('.layout .content .chat .chat-body .messages').append(`<div class="message-item ` + type + `">
                         <div class="message-avatar">
-                            <div>
-                                <div class="time">14:50 PM  ${type == 'outgoing-message' ? '<i class="ti-check"></i>' : ''}  </div>
-                            </div>
+                            
                         </div>
                         <div class="message-content">
                             ` + data.message + `
                         </div>
                     </div>`);
-                    if (!b){
-                        setTimeout(async function () {
-                            chat_body.scrollTop(chat_body.get(0).scrollHeight, -1).niceScroll({
-                                cursorcolor: 'rgba(66, 66, 66, 0.20)',
-                                cursorwidth: "4px",
-                                cursorborder: '0px'
-                            }).resize();
-                        }, 200);
-                    }else{
-                        setTimeout(async function () {
-                            chat_body.scrollTop(chat_body.get(0).scrollHeight, -1).niceScroll({
-                                cursorcolor: 'rgba(66, 66, 66, 0.20)',
-                                cursorwidth: "4px",
-                                cursorborder: '0px'
-                            }).resize();
-                        }, 5);
-                    }
-                //    Update messagein chat list;
-                    let chatItem = $('.open-chat .users-list-body p');
-                    if (chatItem.length){
-                        chatItem[0].innerText = data.message;
-                    }
-                }
+            if (!b) {
+                setTimeout(async function () {
+                    chat_body.scrollTop(chat_body.get(0).scrollHeight, -1).niceScroll({
+                        cursorcolor: 'rgba(66, 66, 66, 0.20)',
+                        cursorwidth: "4px",
+                        cursorborder: '0px'
+                    }).resize();
+                }, 200);
+            } else {
+                setTimeout(async function () {
+                    chat_body.scrollTop(chat_body.get(0).scrollHeight, -1).niceScroll({
+                        cursorcolor: 'rgba(66, 66, 66, 0.20)',
+                        cursorwidth: "4px",
+                        cursorborder: '0px'
+                    }).resize();
+                }, 5);
             }
-    addContact = (data)=>{
+            //    Update messagein chat list;
+            let chatItem = $('.open-chat .users-list-body p');
+            if (chatItem.length) {
+                chatItem[0].innerText = data.message;
+            }
+        }
+    }
+    addContact = (data) => {
         const friendBody = document.querySelector('.sidebar-body #friendListContainer');
         if (!friendBody) return false;
         const node = `<div class="profile">
@@ -307,34 +312,34 @@ class Items{
                                 </div>
                             </div>`;
         const li = document.createElement('li')
-        li.setAttribute('class' ,"list-group-item chatListItem-class");
+        li.setAttribute('class', "list-group-item chatListItem-class");
         li.setAttribute('data-navigation-target', 'chats');
-        li.setAttribute('data-friend-id',`${data.friend._id}`);
+        li.setAttribute('data-friend-id', `${data.friend._id}`);
         li.innerHTML = node;
         const fnd = document.querySelector(`#friendListContainer [data-friend-id~='${data.friend._id}']`);
-        if (fnd) {fnd.remove();}
+        if (fnd) { fnd.remove(); }
         let i = 0;
         do {
             const chield = friendBody.children[i];
-            if (chield){
-                    console.log(' I am executed');
-                    if (chield.innerText >= data.name ){
-                        friendBody.insertBefore(li, chield);
-                        break;
-                    }
-                }else {
+            if (chield) {
+                console.log(' I am executed');
+                if (chield.innerText >= data.name) {
+                    friendBody.insertBefore(li, chield);
+                    break;
+                }
+            } else {
                 friendBody.append(li);
                 break;
             }
             i++
-        }while (friendBody.children.length+1 > i);
+        } while (friendBody.children.length + 1 > i);
         const chatFnd = document.querySelector(`#chatListContainer [data-friend-id~='${data.friend._id}']`);
-        if (chatFnd){
+        if (chatFnd) {
             chatFnd.querySelector('h5').innerText = data.name;
         }
         return true;
     }
-    profile = (data)=>{
+    profile = (data) => {
         const contactInformation = document.getElementById('contact-information');
         if (!data || !contactInformation) return false;
         // data = {email: "ncmaurya99@gmail.com",
@@ -392,12 +397,12 @@ class Items{
                                         <h6>City</h6>
                                         <p class="text-muted" id="profileCity">${data.friend.city}</p>
                                     </div>`
-                                : '<div></div>'}
+                : '<div></div>'}
              ${data.friend.city ? `<div class="mt-4 mb-4">
                                         <h6>Website</h6>
                                         <p class="text-muted" id="profileCity">${data.friend.website}</p>
                                     </div>`
-                                : '<div></div>'}
+                : '<div></div>'}
 <!--                                    <div class="mt-4 mb-4">-->
 <!--                                        <h6 class="mb-3">Social media accounts</h6>-->
 <!--                                        <ul class="list-inline social-links">-->
@@ -506,7 +511,7 @@ class Items{
         contactInformation.classList.add('active');
         return true;
     }
-    me = (data)=>{
+    me = (data) => {
         const contactInformation = document.getElementById('contact-information');
         if (!data || !contactInformation) return false;
         // about: "Hey I am using chatX."
@@ -558,12 +563,12 @@ class Items{
                                         <h6>City</h6>
                                         <p class="text-muted" id="profileCity">${data.city}</p>
                                     </div>`
-                                : '<div></div>'}
+                : '<div></div>'}
              ${data.city ? `<div class="mt-4 mb-4">
                                         <h6>Website</h6>
                                         <p class="text-muted" id="profileCity">${data.website}</p>
                                     </div>`
-                                : '<div></div>'}
+                : '<div></div>'}
 <!--                                    <div class="mt-4 mb-4">-->
 <!--                                        <h6 class="mb-3">Social media accounts</h6>-->
 <!--                                        <ul class="list-inline social-links">-->

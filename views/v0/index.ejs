@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+
 <head>
-<!-- http://slek.laborasyon.com/demos/default/# -->
+    <!-- http://slek.laborasyon.com/demos/default/# -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -19,22 +20,131 @@
 </head>
 
 <body data-new-gr-c-s-check-loaded="14.991.0" data-gr-ext-installed="" class="">
+    <div role="alert" id="toast" aria-live="assertive" aria-atomic="true" class="toast hide" data-autohide="false"
+        style="
+        opacity: 1;
+        position: fixed;
+        bottom: 2em;
+        z-index: 1000000000;
+        right: 2em;
+        min-width: 201px;
+    ">
+        <div class="toast-header">
+            <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+            <strong class="mr-auto">Alert</strong>
+            <small>1 sec ago</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body" id="toast-message">
+            Hello
+        </div>
+    </div>
 
-<!-- page loading -->
+    <!-- page loading -->
 
-<!-- ./ page loading -->
+    <!-- ./ page loading -->
 
-<!-- Bundle -->
-<script src="./vendor/js/bundle.js"></script>
+    <!-- Bundle -->
+    <script src="./vendor/js/bundle.js"></script>
 
-<!--<script src="./vendor/js/enjoyhint.min.js"></script>-->
+    <!--<script src="./vendor/js/enjoyhint.min.js"></script>-->
 
-<!-- App scripts -->
-<script src="./vendor/js/app.min.js"></script>
+    <!-- App scripts -->
+    <script src="./vendor/js/app.min.js"></script>
 
-<!-- Examples -->
-<!--<script src="./vendor/js/examples.js"></script>-->
-<script src="js/index.js"></script>
+    <!-- Examples -->
+    <!--<script src="./vendor/js/examples.js"></script>-->
+    <script>
+        const toast = (data = null, type = 'bg-danger') => {
+            $('#toast').removeClass(/^bg-[a-z]/)
+            $('#toast').addClass(type)
+            $('#toast button').click(() => {
+                $('#toast').addClass('hide')
+                $('#toast').removeClass('show')
+                return;
+            });
+            $('#toast .toast-body').html(data)
+            $('#toast').addClass("show")
+            $('#toast').removeClass("hide")
 
-<div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr" style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 79px; left: 965.4px; height: 558px; touch-action: none; opacity: 0; display: block;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 4px; height: 131px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 4px; z-index: auto; top: 633px; left: 1px; position: absolute; cursor: default; opacity: 0; display: none; width: 965px;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 4px; width: 842px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; left: 0px;"></div></div><div id="ascrail2001" class="nicescroll-rails nicescroll-rails-vr" style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 170.8px; left: 1451.6px; height: 551px; touch-action: none; opacity: 0; display: block;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 4px; height: 302px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;"></div></div><div id="ascrail2001-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 4px; z-index: auto; top: 718.4px; left: 1018.92px; position: absolute; cursor: default; display: none; width: 433px; opacity: 0;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 4px; width: 446px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; left: 0px;"></div></div><div id="ascrail2002" class="nicescroll-rails nicescroll-rails-vr" style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 170.8px; left: 447px; height: 551px; touch-action: none; display: none; opacity: 0;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 4px; height: 389px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;"></div></div><div id="ascrail2002-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 4px; z-index: auto; top: 718px; left: 101px; position: absolute; cursor: default; display: none; width: 346px; opacity: 0;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 4px; width: 350px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; left: 0px;"></div></div><div id="ascrail2003" class="nicescroll-rails nicescroll-rails-vr" style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 0px; left: -4px; height: 0px; touch-action: none; display: none;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 4px; height: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;"></div></div><div id="ascrail2003-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 4px; z-index: auto; top: -4px; left: 0px; position: absolute; cursor: default; display: none;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 4px; width: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px;"></div></div><div id="ascrail2004" class="nicescroll-rails nicescroll-rails-vr" style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 0px; left: -4px; height: 0px; touch-action: none; display: none;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 4px; height: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;"></div></div><div id="ascrail2004-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 4px; z-index: auto; top: -4px; left: 0px; position: absolute; cursor: default; display: none;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 4px; width: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px;"></div></div><div id="ascrail2005" class="nicescroll-rails nicescroll-rails-vr" style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 0px; left: -4px; height: 0px; touch-action: none; display: none;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 4px; height: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;"></div></div><div id="ascrail2005-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 4px; z-index: auto; top: -4px; left: 0px; position: absolute; cursor: default; display: none;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 4px; width: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px;"></div></div>
+        }
+    </script>
+    <script src="/js/index.js"></script>
+
+    <div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr"
+        style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 79px; left: 965.4px; height: 558px; touch-action: none; opacity: 0; display: block;">
+        <div class="nicescroll-cursors"
+            style="position: relative; top: 0px; float: right; width: 4px; height: 131px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;">
+        </div>
+    </div>
+    <div id="ascrail2000-hr" class="nicescroll-rails nicescroll-rails-hr"
+        style="height: 4px; z-index: auto; top: 633px; left: 1px; position: absolute; cursor: default; opacity: 0; display: none; width: 965px;">
+        <div class="nicescroll-cursors"
+            style="position: absolute; top: 0px; height: 4px; width: 842px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; left: 0px;">
+        </div>
+    </div>
+    <div id="ascrail2001" class="nicescroll-rails nicescroll-rails-vr"
+        style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 170.8px; left: 1451.6px; height: 551px; touch-action: none; opacity: 0; display: block;">
+        <div class="nicescroll-cursors"
+            style="position: relative; top: 0px; float: right; width: 4px; height: 302px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;">
+        </div>
+    </div>
+    <div id="ascrail2001-hr" class="nicescroll-rails nicescroll-rails-hr"
+        style="height: 4px; z-index: auto; top: 718.4px; left: 1018.92px; position: absolute; cursor: default; display: none; width: 433px; opacity: 0;">
+        <div class="nicescroll-cursors"
+            style="position: absolute; top: 0px; height: 4px; width: 446px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; left: 0px;">
+        </div>
+    </div>
+    <div id="ascrail2002" class="nicescroll-rails nicescroll-rails-vr"
+        style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 170.8px; left: 447px; height: 551px; touch-action: none; display: none; opacity: 0;">
+        <div class="nicescroll-cursors"
+            style="position: relative; top: 0px; float: right; width: 4px; height: 389px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;">
+        </div>
+    </div>
+    <div id="ascrail2002-hr" class="nicescroll-rails nicescroll-rails-hr"
+        style="height: 4px; z-index: auto; top: 718px; left: 101px; position: absolute; cursor: default; display: none; width: 346px; opacity: 0;">
+        <div class="nicescroll-cursors"
+            style="position: absolute; top: 0px; height: 4px; width: 350px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; left: 0px;">
+        </div>
+    </div>
+    <div id="ascrail2003" class="nicescroll-rails nicescroll-rails-vr"
+        style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 0px; left: -4px; height: 0px; touch-action: none; display: none;">
+        <div class="nicescroll-cursors"
+            style="position: relative; top: 0px; float: right; width: 4px; height: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;">
+        </div>
+    </div>
+    <div id="ascrail2003-hr" class="nicescroll-rails nicescroll-rails-hr"
+        style="height: 4px; z-index: auto; top: -4px; left: 0px; position: absolute; cursor: default; display: none;">
+        <div class="nicescroll-cursors"
+            style="position: absolute; top: 0px; height: 4px; width: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px;">
+        </div>
+    </div>
+    <div id="ascrail2004" class="nicescroll-rails nicescroll-rails-vr"
+        style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 0px; left: -4px; height: 0px; touch-action: none; display: none;">
+        <div class="nicescroll-cursors"
+            style="position: relative; top: 0px; float: right; width: 4px; height: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;">
+        </div>
+    </div>
+    <div id="ascrail2004-hr" class="nicescroll-rails nicescroll-rails-hr"
+        style="height: 4px; z-index: auto; top: -4px; left: 0px; position: absolute; cursor: default; display: none;">
+        <div class="nicescroll-cursors"
+            style="position: absolute; top: 0px; height: 4px; width: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px;">
+        </div>
+    </div>
+    <div id="ascrail2005" class="nicescroll-rails nicescroll-rails-vr"
+        style="width: 4px; z-index: auto; cursor: default; position: absolute; top: 0px; left: -4px; height: 0px; touch-action: none; display: none;">
+        <div class="nicescroll-cursors"
+            style="position: relative; top: 0px; float: right; width: 4px; height: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px; touch-action: none;">
+        </div>
+    </div>
+    <div id="ascrail2005-hr" class="nicescroll-rails nicescroll-rails-hr"
+        style="height: 4px; z-index: auto; top: -4px; left: 0px; position: absolute; cursor: default; display: none;">
+        <div class="nicescroll-cursors"
+            style="position: absolute; top: 0px; height: 4px; width: 0px; background-color: rgba(66, 66, 66, 0.2); border: 0px; background-clip: padding-box; border-radius: 5px;">
+        </div>
+    </div>
+
+
 </body>

@@ -4,7 +4,8 @@ const router = xp.Router();
 
 //Unprotected routs
 router.post('/login', authController.login)
-    .post('/signup', authController.signup);
+    .post('/signup', authController.signup)
+    .get('/logout', authController.logout);
 
 
 module.exports = router;
